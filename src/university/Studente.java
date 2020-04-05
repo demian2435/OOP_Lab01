@@ -32,12 +32,15 @@ public class Studente {
 	}
 
 	public String stampaCorsi() {
-		String result = "";
+		StringBuffer result = new StringBuffer();
 
-		for (Corso c : corsi) {
-			result += c.toString() + "\n";
+		for (int i = 0; i < corsi.size(); i++) {
+			result.append(corsi.get(i));
+			if (i < corsi.size() - 1) {
+				result.append("\n");
+			}
 		}
-		return result;
+		return result.toString();
 	}
 
 	public boolean canRegister() {

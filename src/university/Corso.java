@@ -31,12 +31,15 @@ public class Corso {
 	}
 
 	public String stampaStudenti() {
-		String result = "";
+		StringBuffer result = new StringBuffer();
 
-		for (Studente s : studenti) {
-			result += s.toString() + "\n";
+		for (int i = 0; i < studenti.size(); i++) {
+			result.append(studenti.get(i));
+			if (i < studenti.size() - 1) {
+				result.append("\n");
+			}
 		}
-		return result;
+		return result.toString();
 	}
 
 	public boolean canRegister() {
