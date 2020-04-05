@@ -9,6 +9,7 @@ public class Studente {
 	private String cognome;
 	private int matricola;
 	private List<Corso> corsi;
+	private static final int MAXCORSI = 25;
 
 	public Studente(String nome, String cognome, int matricola) {
 		this.nome = nome;
@@ -37,6 +38,10 @@ public class Studente {
 			result += c.toString() + "\n";
 		}
 		return result;
+	}
+
+	public boolean canRegister() {
+		return corsi.size() < MAXCORSI;
 	}
 
 }

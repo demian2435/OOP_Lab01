@@ -5,29 +5,36 @@ public class Main {
 	// https://oop.polito.it/svn/OOPLabs/master/OOP_LAB_University/Requisiti.html
 
 	public static void main(String[] args) {
-		University u = new University("Tor Vergata");
 		
-		u.enroll("Damiano", "Malori");
-		u.enroll("Federica", "Persiani");
-		u.activate("OOP", "Mario Rossi");
-		u.activate("HTC", "Marco Verdi");
-		u.activate("Numeri Simpatici", "Gianni Sperti");
+		String universityName = "Politecnico di Torino";
 		
-		System.out.println("* Studente 10001");
-		System.out.println(u.student(10001));
-		System.out.println("* Corso 10");
-		System.out.println(u.course(10));
+		University poli = new University(universityName);
 		
-		u.register(10000, 10);
-		u.register(10001, 10);
-		u.register(10000, 11);
-		u.register(10000, 12);
-
-		System.out.println("* Studenti iscitti al corso 10");
-		System.out.println(u.listAttendees(10));
+		poli.setRector("Guido", "Saracco");
 		
-		System.out.println("* Corsi a cui è iscitto lo studente 10000");
-		System.out.println(u.studyPlan(10000));
+		System.out.println("Rector of " + poli.getName() + " : " + poli.getRector()); // Guido Saracco
+		
+		int s1 = poli.enroll("Mario","Rossi");
+		int s2 = poli.enroll("Giuseppe","Verdi");
+		
+		System.out.println("Enrolled students " + s1 + ", " + s2); // 10000, 10001
+		System.out.println("s1 = " + poli.student(s1)); // 10000 Mario Rossi
+		
+		int macro = poli.activate("Macro Economics", "Paul Krugman");
+		int oop = poli.activate("Object Oriented Programming", "James Gosling");
+		
+		System.out.println("Activated courses " + macro + " and " + oop);// 10 and 11
+		poli.register(s1, macro);
+		poli.register(s2, macro);
+		poli.register(s2, oop);
+		
+		System.out.println(poli.listAttendees(macro));
+		// 10000 Mario Rossi
+		// 10001 Giuseppe Verdi
+		
+		System.out.println(poli.studyPlan(s2));
+		// 10,Macro Economics,Paul Krugman
+		// 11,Object Oriented Programming,Marco Torchiano
 	}
 
 }

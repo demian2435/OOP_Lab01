@@ -8,8 +8,10 @@ public class University {
 	private String ateneo;
 	private Rettore rettore;
 	private static int matricola = 10000;
+	private static final int MAXSTUDENTI = 1000;
 	private List<Studente> studenti;
 	private static int codiceCorso = 10;
+	private static final int MAXCORSI = 50;
 	private List<Corso> corsi;
 
 	public University(String ateneo) {
@@ -31,7 +33,7 @@ public class University {
 	}
 
 	public int enroll(String nome, String cognome) {
-		if (studenti.size() >= 1000) {
+		if (studenti.size() >= MAXSTUDENTI) {
 			return -1;
 		}
 		studenti.add(new Studente(nome, cognome, matricola));
@@ -43,7 +45,7 @@ public class University {
 	}
 
 	public int activate(String corso, String nomeDocente) {
-		if (corsi.size() >= 50) {
+		if (corsi.size() >= MAXCORSI) {
 			return -1;
 		}
 		corsi.add(new Corso(corso, nomeDocente, codiceCorso));
@@ -58,12 +60,10 @@ public class University {
 		Studente s = studenti.get(matricolaStudente - 10000);
 		Corso c = corsi.get(codiceCorso - 10);
 
-		if (s.getSizeCorsi() > 25 || c.getSizeStudenti() > 100) {
-			return;
+		if (s.canRegister() && c.canRegister()) {
+			s.addCorso(c);
+			c.addStudente(s);
 		}
-
-		s.addCorso(c);
-		c.addStudente(s);
 	}
 
 	public String listAttendees(int codiceCorso) {

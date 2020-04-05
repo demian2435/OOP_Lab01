@@ -8,6 +8,7 @@ public class Corso {
 	private String nomeDocente;
 	private int codiceCorso;
 	private List<Studente> studenti;
+	private static final int MAXSTUDENTI = 100;
 
 	public Corso(String corso, String nomeDocente, int codiceCorso) {
 		this.corso = corso;
@@ -26,7 +27,7 @@ public class Corso {
 
 	@Override
 	public String toString() {
-		return codiceCorso + ", " + corso + ", " + nomeDocente;
+		return codiceCorso + "," + corso + "," + nomeDocente;
 	}
 
 	public String stampaStudenti() {
@@ -36,6 +37,10 @@ public class Corso {
 			result += s.toString() + "\n";
 		}
 		return result;
+	}
+
+	public boolean canRegister() {
+		return studenti.size() < MAXSTUDENTI;
 	}
 
 }
