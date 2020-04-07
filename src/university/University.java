@@ -2,22 +2,28 @@ package university;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class University {
 
-	private String ateneo;
-	private Rettore rettore;
-	private static int matricola = 10000;
-	private static final int MAXSTUDENTI = 1000;
-	private List<Studente> studenti;
-	private static int codiceCorso = 10;
-	private static final int MAXCORSI = 50;
-	private List<Corso> corsi;
+	protected Logger log;
+
+	protected String ateneo;
+	protected Rettore rettore;
+	protected static int matricola = 10000;
+	protected static final int MAXSTUDENTI = 1000;
+	protected List<Studente> studenti;
+	protected static int codiceCorso = 10;
+	protected static final int MAXCORSI = 50;
+	protected List<Corso> corsi;
 
 	public University(String ateneo) {
 		this.ateneo = ateneo;
 		studenti = new ArrayList<Studente>();
 		corsi = new ArrayList<Corso>();
+
+		log = Logger.getLogger("LOG");
 	}
 
 	public String getName() {
@@ -26,6 +32,8 @@ public class University {
 
 	public void setRector(String nome, String cognome) {
 		rettore = new Rettore(nome, cognome);
+
+		log.log(Level.INFO, "Add to " + ateneo + " new Rector " + nome + " " + cognome);
 	}
 
 	public String getRector() {
@@ -37,6 +45,9 @@ public class University {
 			return -1;
 		}
 		studenti.add(new Studente(nome, cognome, matricola));
+
+		log.log(Level.INFO, "New student enrolled: " + matricola + ", " + nome + " " + cognome);
+
 		return matricola++;
 	}
 
@@ -49,6 +60,9 @@ public class University {
 			return -1;
 		}
 		corsi.add(new Corso(corso, nomeDocente, codiceCorso));
+
+		log.log(Level.INFO, "New course activated: " + codiceCorso + ", " + corso + " " + nomeDocente);
+
 		return codiceCorso++;
 	}
 
@@ -64,6 +78,9 @@ public class University {
 			s.addCorso(c);
 			c.addStudente(s);
 		}
+
+		log.log(Level.INFO, "Student " + matricolaStudente + " signed up for course " + codiceCorso);
+
 	}
 
 	public String listAttendees(int codiceCorso) {
