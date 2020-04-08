@@ -51,7 +51,7 @@ public class Corso {
 
 	@Override
 	public String toString() {
-		return codiceCorso + "," + corso + "," + nomeDocente;
+		return codiceCorso + ", " + corso + ", " + nomeDocente;
 	}
 
 	/**

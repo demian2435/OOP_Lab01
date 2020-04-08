@@ -12,6 +12,14 @@ public class Esame {
 		this.voto = voto;
 	}
 
+	public Corso getCorso() {
+		return corso;
+	}
+
+	public Studente getStudente() {
+		return studente;
+	}
+
 	public int getVoto() {
 		return voto;
 	}

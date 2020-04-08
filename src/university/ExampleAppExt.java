@@ -1,13 +1,7 @@
 package university;
 
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.logging.FileHandler;
-import java.util.logging.LogManager;
-import java.util.logging.Logger;
-
-import university.*;
 
 public class ExampleAppExt {
 	public static void main(String[] args) throws SecurityException, FileNotFoundException, IOException {
@@ -28,6 +22,8 @@ public class ExampleAppExt {
 		
 		int macro = poli.activate("Macro Economics", "Paul Krugman");
 		int oop = poli.activate("Object Oriented Programming", "James Gosling");
+		
+		System.out.println(poli.course(macro));
 		
 		System.out.println("Activated courses " + macro + " and " + oop); // 10 and 11
 		poli.register(s1, macro);
